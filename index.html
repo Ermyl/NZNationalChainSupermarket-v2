@@ -426,41 +426,46 @@
     </div>
   </section>
 
- <!-- Footer -->
-<footer class="border-t border-neutral-200 bg-white relative">
-  <div class="mx-auto max-w-7xl px-4 py-8 text-sm text-neutral-600 flex flex-col md:flex-row items-center justify-between gap-3">
-    <p>&copy; <span id="y"></span> National Supermarket & Mall Rollout — NZ-Owned.</p>
-    <div class="flex items-center gap-4">
-      <a href="#overview" class="hover:text-neutral-900">Overview</a>
-      <a href="#fasttrack" class="hover:text-neutral-900">Fast-Track</a>
-      <a href="#sites" class="hover:text-neutral-900">Sites</a>
-      <a href="mailto:remy@i4c.co.nz" class="hover:text-neutral-900">Contact</a>
-      <a href="#privacy" @click.prevent="openPrivacy = true" class="hover:text-neutral-900">Privacy</a>
+ <body x-data="{ openPrivacy: false }" class="bg-white text-neutral-900">
+
+  <!-- Footer -->
+  <footer class="border-t border-neutral-200 bg-white relative">
+    <div class="mx-auto max-w-7xl px-4 py-8 text-sm text-neutral-600 flex flex-col md:flex-row items-center justify-between gap-3">
+      <p>&copy; <span id="y"></span> National Supermarket & Mall Rollout — NZ-Owned.</p>
+      <div class="flex items-center gap-4">
+        <a href="#overview" class="hover:text-neutral-900">Overview</a>
+        <a href="#fasttrack" class="hover:text-neutral-900">Fast-Track</a>
+        <a href="#sites" class="hover:text-neutral-900">Sites</a>
+        <a href="mailto:remy@i4c.co.nz" class="hover:text-neutral-900">Contact</a>
+        <a href="#privacy" @click.prevent="openPrivacy = true" class="hover:text-neutral-900">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Privacy popup -->
+  <div 
+    x-show="openPrivacy"
+    x-transition
+    @click.self="openPrivacy = false"
+    class="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+    <div class="bg-white max-w-lg mx-4 rounded-2xl p-6 shadow-lg text-neutral-800 relative">
+      <h2 class="text-2xl font-bold mb-3">Privacy Policy</h2>
+      <p class="text-sm mb-3">
+        We collect only the information you choose to share when registering your interest.
+        This data is used solely for project updates and will never be sold or shared.
+      </p>
+      <p class="text-sm mb-3">
+        To remove your information, email 
+        <a href="mailto:remy@i4c.co.nz" class="underline text-emerald-600">remy@i4c.co.nz</a>.
+      </p>
     </div>
   </div>
-</footer>
 
-<!-- Privacy popup -->
-<div 
-  x-show="openPrivacy"
-  x-transition
-  @click.self="openPrivacy = false"
-  class="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-  <div class="bg-white max-w-lg mx-4 rounded-2xl p-6 shadow-lg text-neutral-800 relative">
-    <h2 class="text-2xl font-bold mb-3">Privacy Policy</h2>
-    <p class="text-sm mb-3">
-      We collect only the information you choose to share when registering your interest.
-      This data is used solely for project updates and will never be sold or shared.
-    </p>
-    <p class="text-sm mb-3">
-      To remove your information, email 
-      <a href="mailto:remy@i4c.co.nz" class="underline text-emerald-600">remyleblanc@hotmail.com</a>.
-    </p>
-  </div>
-</div>
-
-<script>
-  // Year auto-update
-  document.getElementById('y').textContent = new Date().getFullYear();
-</script>
-
+  <!-- Scripts -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script>
+    // Auto-update year
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
